@@ -1,18 +1,32 @@
 // Update this function to draw you own maeda clock on a 960x500 canvas
 
+function draw_starfield() {
+  // 绘制星空
+  for (let i = 0; i < 100; i++) { // 星星的数量
+    let starX = random(width);
+    let starY = random(height);
+    let starSize = random(1, 3); // 星星的大小
+    fill(255);
+    noStroke();
+    ellipse(starX, starY, starSize, starSize);
+  }
+}
+
 function draw_clock(obj) {
+  // 绘制星空背景
+  background(25, 25, 112);
+  draw_starfield();
 
-  background(135,206,250);
+  // 太阳的位置和大小
+  let sunX = width / 2;
+  let sunY = height / 2;
+  let sunDiameter = 50; 
 
- // Position and size of the sun
- let sunX = width / 2;
- let sunY = height / 2;
- let sunDiameter = 50; 
+  // 绘制太阳
+  fill(255, 204, 0); // 太阳颜色
+  noStroke(); // 不绘制边框
+  ellipse(sunX, sunY, sunDiameter, sunDiameter);
 
- // sun
- fill(255, 204, 0); // 太阳颜色
- noStroke(); // 不绘制边框
- ellipse(sunX, sunY, sunDiameter, sunDiameter);
   // 定义轨道半径
   let jupiterOrbit = 100; // 木星轨道半径
   let earthOrbit = 150; // 地球轨道半径
@@ -34,13 +48,13 @@ function draw_clock(obj) {
   // 绘制月球轨道
   ellipse(width / 2, height / 2, moonOrbit * 2);
 
-  // 木星
-  fill(205,92,92); // 木星颜色
+  // 绘制木星
+  fill(205, 92, 92); // 木星颜色
   let jupiterX = width / 2 + cos(jupiterAngle) * jupiterOrbit;
   let jupiterY = height / 2 + sin(jupiterAngle) * jupiterOrbit;
   ellipse(jupiterX, jupiterY, 40, 40); // 木星大小
 
-  // 地球
+  // 绘制地球
   fill(0, 100, 255); // 地球颜色
   let earthX = width / 2 + cos(earthAngle) * earthOrbit;
   let earthY = height / 2 + sin(earthAngle) * earthOrbit;
